@@ -1,8 +1,8 @@
 {
-  "homepage": "https://github.com/TheAftabAlam/portfolio-website",
-  "name": "portfolio",
+  "homepage": "https://TheAftabAlam.github.io/portfolio-website",
+  "name": "portfolio-website",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
