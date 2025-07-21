@@ -2,6 +2,8 @@ import React from "react";
 import { experiences } from "../../constants";
 
 const Experience = () => {
+  const experience = experiences[0]; // Single experience
+
   return (
     <section
       id="experience"
@@ -9,66 +11,59 @@ const Experience = () => {
     >
       {/* Section Title */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold">💼 Experience</h2>
+        <h2 className="text-4xl font-bold">💼 Professional Experience</h2>
         <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-500 mx-auto mt-4 rounded-full"></div>
         <p className="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">
-          Here's a glimpse of my professional journey and the roles I've played in various organizations.
+          My journey in the tech world, building real products that solve real problems.
         </p>
       </div>
 
-      {/* Experience Timeline */}
-      <div className="relative border-l-2 border-purple-500 ml-4 sm:ml-1 sm:border-l-0 sm:border-r-2 sm:pl-0 sm:pr-4">
-        {experiences.map((experience, index) => (
-          <div
-            key={experience.id}
-            data-aos="fade-up"
-            data-aos-delay={index * 100}
-            className={`mb-16 relative sm:flex ${
-              index % 2 === 0 ? "sm:flex-row-reverse" : "sm:flex-row"
-            } items-center`}
-          >
-            {/* Timeline Dot */}
-            <div className="absolute left-[-14px] sm:left-1/2 transform sm:-translate-x-1/2 w-7 h-7 bg-purple-600 border-4 border-white rounded-full z-10 shadow-md"></div>
+      {/* Experience Card */}
+      <div
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        className="bg-[#1e1b36]/60 backdrop-blur-md border border-gray-700 rounded-3xl shadow-2xl max-w-5xl mx-auto p-10 transition-all hover:scale-[1.01]"
+      >
+        <div className="flex flex-col sm:flex-row items-center gap-8">
+          {/* Company Logo */}
+          <div className="w-24 h-24 bg-white rounded-xl overflow-hidden shadow-lg">
+            <img
+              src={experience.img}
+              alt={experience.company}
+              className="w-full h-full object-contain p-2"
+            />
+          </div>
 
-            {/* Experience Card */}
-            <div
-              className={`w-full sm:w-[45%] bg-[#1e1b36] border border-gray-700 rounded-2xl shadow-xl p-6 transition-transform transform hover:scale-105 ${
-                index % 2 === 0 ? "sm:mr-8" : "sm:ml-8"
-              }`}
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 bg-white rounded-md overflow-hidden">
-                  <img
-                    src={experience.img}
-                    alt={experience.company}
-                    className="w-full h-full object-contain p-2"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold">{experience.role}</h3>
-                  <p className="text-sm text-gray-400">{experience.company}</p>
-                  <p className="text-xs text-gray-500 mt-1">{experience.date}</p>
-                </div>
-              </div>
+          {/* Details */}
+          <div className="flex-1 text-center sm:text-left">
+            <h3 className="text-2xl font-bold text-white">{experience.role}</h3>
+            <p className="text-purple-400 font-medium">{experience.company}</p>
+            <p className="text-gray-400 text-sm mt-1 whitespace-pre-line">{experience.date}</p>
 
-              <p className="text-gray-300">{experience.desc}</p>
+            <ul className="text-gray-300 mt-4 list-disc list-inside space-y-2 text-left">
+              <li>Built scalable features for financial SaaS using Java & Spring Boot</li>
+              <li>Implemented RESTful APIs for user, billing, and analytics services</li>
+              <li>Managed data layers using MySQL, SQLite, and Firebase integrations</li>
+              <li>Deployed and monitored services on AWS EC2 and S3</li>
+              <li>Developed responsive UIs in React and TailwindCSS</li>
+              <li>Followed Agile practices with regular sprint deliveries and code reviews</li>
+            </ul>
 
-              <div className="mt-4">
-                <h5 className="font-medium text-white mb-2">Skills Used:</h5>
-                <ul className="flex flex-wrap">
-                  {experience.skills.map((skill, idx) => (
-                    <li
-                      key={idx}
-                      className="bg-[#8245ec] text-white px-3 py-1 text-xs rounded-full mr-2 mb-2 shadow-md"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
+            <div className="mt-6 text-left">
+              <h5 className="font-semibold text-white mb-3">Tech Stack:</h5>
+              <div className="flex flex-wrap gap-2">
+                {experience.skills.map((skill, idx) => (
+                  <span
+                    key={idx}
+                    className="bg-purple-600/80 text-white px-3 py-1 text-xs rounded-full shadow-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );

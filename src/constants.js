@@ -85,22 +85,33 @@ export const experiences = [{
   img: hb, // make sure you have this logo imported or defined
   role: "Software Developer",
   company: "Hostbooks Limited",
-  date: "January 2023 - Present\n Gurugram,Haryana",
-  desc: "Worked on the development of enterprise-level financial and accounting software using modern web technologies. Responsible for creating dynamic user interfaces, integrating RESTful APIs, and maintaining backend logic. Collaborated with cross-functional teams to ensure feature scalability, data accuracy, and performance optimization.",
+  date: "January 2023 - Present\n Gurugram, Haryana",
+  desc: "Contributed to the development of scalable enterprise-level financial software. Played a key role in building robust backend services, designing responsive UI components, and integrating secure APIs. Actively participated in sprint planning, code reviews, and performance tuning to deliver reliable and efficient solutions.",
   skills: [
+    // Backend
     "Java",
     "SpringBoot",
-    "AWS",
-    "Sqlite",
-    "MySql",
-    "FireBase",
+    "MicroServices",
+    "Kafka",
     "REST APIs",
+
+    // Frontend
+    "React JS",
     "HTML",
     "CSS",
+
+    // Database
+    "MySql",
+    "Sqlite",
+    "FireBase",
+
+    // Deployment / DevOps
+    "AWS",
     "Git",
-    "React JS",
   ],
-}]
+}];
+
+
 
 
 export const education = [
@@ -199,5 +210,36 @@ export const projects = [
     image: fbApi, // Replace with the actual imported logo or placeholder
     tags: ["Spring Boot", "Java", "Kafka", "Microservices", "Event-Driven", "Messaging"],
     github: "https://github.com/TheAftabAlam/FaceBook-API"
+  }
+];  
+
+export const certificates = [
+  {
+    id: 0,
+    title: "ShopEase - E-commerce Platform",
+    description:
+      "ShopEase is a full-stack e-commerce web application built using React, Redux, Java, Spring Boot, and MySQL. It offers a seamless shopping experience with features like user authentication, product browsing, shopping cart, order management, and role-based access for admins and customers. The backend exposes secure RESTful APIs with robust data handling using Spring and Hibernate, while the frontend delivers dynamic and responsive UI powered by Redux for state management.",
+    image: se, // Replace with actual ShopEase logo or placeholder
+    tags: ["React", "Redux", "Java", "Spring Boot", "MySQL", "Hibernate", "REST API"],
+    github: "https://github.com/TheAftabAlam/e-commerce"
+  },
+  {
+    id: 1,
+    title: "Nursery Plant API",
+    description:
+      "A robust backend RESTful API developed using Spring Boot, Spring Framework, MySQL, and Hibernate. This API powers a nursery management system, enabling efficient handling of plant inventory, categories, customer orders, and authentication. It provides scalable endpoints for CRUD operations, user roles, and secure data persistence, making it ideal for modern plant nursery applications.",
+    image: nursaryLogo,
+    tags: ["Java", "Spring Boot", "Spring", "MySQL", "Hibernate", "REST API"],
+    github: "https://github.com/TheAftabAlam/Nursary-Plant-Api"
+  },
+  {
+    id: 2,
+    title: "CricBuzz Clone",
+    description:
+      "A front-end clone of the popular cricket platform CricBuzz, built using HTML, CSS, and JavaScript. This project replicates core features such as live scores, match schedules, and news layouts. Designed with a responsive UI and attention to detail to mimic the real-world application experience.",
+    image: cricbuzz, // Replace with the actual imported logo or a placeholder
+    tags: ["HTML", "CSS", "JavaScript", "DOM Manipulation", "Responsive Design"],
+    github: "https://github.com/VijaySingh8650/cricbuzz"
+
   }
 ];  
