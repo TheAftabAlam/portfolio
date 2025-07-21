@@ -1,64 +1,61 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaYoutube, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+
+const navLinks = [
+  { name: "About", id: "about" },
+  { name: "Skills", id: "skills" },
+  { name: "Experience", id: "experience" },
+  { name: "Projects", id: "projects" },
+  { name: "Education", id: "education" },
+];
+
+const socialLinks = [
+  { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/aftabalam-connect/", label: "LinkedIn" },
+  { icon: <FaGithub />, link: "https://github.com/theAftabAlam", label: "GitHub" },
+];
 
 const Footer = () => {
-  // Smooth scroll function
   const handleScroll = (sectionId) => {
     const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+    if (section) section.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <footer className="text-white py-8 px-[12vw] md:px-[7vw] lg:px-[20vw]">
-      <div className="container mx-auto text-center">
-        {/* Name / Logo */}
+      <div className="text-center">
+        {/* Logo */}
         <h2 className="text-xl font-semibold text-purple-500">Aftab Alam</h2>
 
-        {/* Navigation Links - Responsive */}
-        <nav className="flex flex-wrap justify-center space-x-4 sm:space-x-6 mt-4">
-          {[
-            { name: "About", id: "about" },
-            { name: "Skills", id: "skills" },
-            { name: "Experience", id: "experience" },
-            { name: "Projects", id: "projects" },
-            { name: "Education", id: "education" },
-          ].map((item, index) => (
+        {/* Navigation */}
+        <nav className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-4">
+          {navLinks.map(({ name, id }) => (
             <button
-              key={index}
-              onClick={() => handleScroll(item.id)}
-              className="hover:text-purple-500 text-sm sm:text-base my-1"
+              key={id}
+              onClick={() => handleScroll(id)}
+              className="text-sm sm:text-base hover:text-purple-500 transition-colors"
             >
-              {item.name}
+              {name}
             </button>
           ))}
         </nav>
 
-        {/* Social Media Icons - Responsive */}
-        <div className="flex flex-wrap justify-center space-x-4 mt-6">
-          {[
-            // { icon: <FaFacebook />, link: "https://www.facebook.com/tarun.kaushik.3511041/" },
-            // { icon: <FaTwitter />, link: "https://twitter.com/CodingMaster6?s=09" },
-            { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/aftabalam-connect/" },
-            { icon: <FaGithub />, link: "https://github.com/theAftabAlam" },
-            // { icon: <FaInstagram />, link: "https://www.instagram.com/coding_.master/" },
-            // { icon: <FaYoutube />, link: "https://www.youtube.com/codingmasteryt" },
-            
-          ].map((item, index) => (
+        {/* Social Icons */}
+        <div className="flex justify-center gap-4 mt-6">
+          {socialLinks.map(({ icon, link, label }, index) => (
             <a
               key={index}
-              href={item.link}
+              href={link}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={label}
               className="text-xl hover:text-purple-500 transition-transform transform hover:scale-110"
             >
-              {item.icon}
+              {icon}
             </a>
           ))}
         </div>
 
-        {/* Copyright Text */}
+        {/* Copyright */}
         <p className="text-sm text-gray-400 mt-6">
           © 2025 Aftab Alam. All rights reserved.
         </p>

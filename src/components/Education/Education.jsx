@@ -1,82 +1,62 @@
 import React from "react";
-import { education } from "../../constants"; // Import the education data
+import { education } from "../../constants";
 
 const Education = () => {
   return (
+    <div data-aos="fade-up" className="...">
     <section
       id="education"
-      className="py-24 pb-24 px-[12vw] md:px-[7vw] lg:px-[16vw] font-sans bg-skills-gradient clip-path-custom-3"
+      className="py-24 px-[10vw] font-sans bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-white"
     >
-      {/* Section Title */}
+      {/* Section Header */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-white">EDUCATION</h2>
-        <div className="w-32 h-1 bg-purple-500 mx-auto mt-4"></div>
-        <p className="text-gray-400 mt-4 text-lg font-semibold">
-          My education has been a journey of learning and development. Here are the details of my academic background
+        <h2 className="text-4xl font-bold">🎓 Education</h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-500 mx-auto mt-4 rounded-full"></div>
+        <p className="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">
+          My educational journey has helped shape the developer I am today. Here’s a glimpse of my academic background.
         </p>
       </div>
 
-      {/* Education Timeline */}
-      <div className="relative">
-        {/* Vertical line */}
-        <div className="absolute sm:left-1/2 left-0 transform -translate-x-1/2 sm:-translate-x-0 w-1 bg-white h-full"></div>
-
-        {/* Education Entries */}
+      {/* Timeline Container */}
+      <div className="relative border-l-2 border-purple-500 ml-4 sm:ml-1 sm:border-l-0 sm:border-r-2 sm:pl-0 sm:pr-4">
         {education.map((edu, index) => (
           <div
             key={edu.id}
-            className={`flex flex-col sm:flex-row items-center mb-16 ${
-              index % 2 === 0 ? "sm:justify-start" : "sm:justify-end"
-            }`}
+            className={`mb-16 relative sm:flex ${
+              index % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
+            } items-center`}
           >
-            {/* Timeline Circle */}
-            <div className="absolute sm:left-1/2 left-0 transform -translate-x-1/2 bg-gray-400 border-4 border-[#8245ec] w-12 h-12 sm:w-16 sm:h-16 rounded-full flex justify-center items-center z-10">
-              <img
-                src={edu.img}
-                alt={edu.school}
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
+            {/* Timeline Dot */}
+            <div className="absolute left-[-14px] sm:left-1/2 transform sm:-translate-x-1/2 w-7 h-7 bg-purple-600 border-4 border-white rounded-full z-10 shadow-md"></div>
 
-            {/* Content Section */}
+            {/* Card Content */}
             <div
-              className={`w-full sm:max-w-md p-4 sm:p-8 rounded-2xl shadow-2xl border border-white bg-gray-900 backdrop-blur-md shadow-[0_0_20px_1px_rgba(130,69,236,0.3)] ${
-                index % 2 === 0 ? "sm:ml-0" : "sm:mr-0"
-              } sm:ml-44 sm:mr-44 ml-8 transform transition-transform duration-300 hover:scale-105`}
+              className={`w-full sm:w-[45%] bg-[#1e1b36] border border-gray-700 rounded-2xl shadow-xl p-6 transition-transform transform hover:scale-105 ${
+                index % 2 === 0 ? "sm:ml-8" : "sm:mr-8"
+              }`}
             >
-              {/* Flex container for image and text */}
-              <div className="flex items-center space-x-6">
-                {/* School Logo/Image */}
-                <div className="w-24 h-16 bg-white rounded-md overflow-hidden">
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-16 h-16 bg-white rounded-md overflow-hidden flex-shrink-0">
                   <img
                     src={edu.img}
                     alt={edu.school}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain p-2"
                   />
                 </div>
-
-                {/* Degree, School Name, and Date */}
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-xl sm:text-xl font-semibold text-white">
-                      {edu.degree}
-                    </h3>
-                    <h4 className="text-md sm:text-sm text-gray-300">
-                      {edu.school}
-                    </h4>
-                  </div>
-                  {/* Date at the bottom */}
-                  <p className="text-sm text-gray-500 mt-2">{edu.date}</p>
+                <div>
+                  <h3 className="text-xl font-semibold">{edu.degree}</h3>
+                  <h4 className="text-md text-gray-300">{edu.school}</h4>
+                  <p className="text-sm text-gray-500 mt-1">{edu.date}</p>
                 </div>
               </div>
-
-              <p className="mt-4 text-gray-400 font-bold">Grade: {edu.grade}</p>
-              <p className="mt-4 text-gray-400 px-4">{edu.desc}</p>
+              <p className="text-gray-400 font-bold">Grade: {edu.grade}</p>
+              <p className="mt-2 text-gray-400">{edu.desc}</p>
             </div>
           </div>
         ))}
       </div>
     </section>
+    </div>
   );
 };
 

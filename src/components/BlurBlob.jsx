@@ -1,31 +1,43 @@
 // components/BlurBlob.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx'; // Optional: for conditional class handling
 
-const BlurBlob = ({ position, size }) => {
-  // Destructure position and size with default values
-  const { top, left } = position
-  const { width, height } = size 
+const BlurBlob = ({
+  position = { top: '50%', left: '50%' },
+  size = { width: '300px', height: '300px' },
+  color = 'bg-purple-500',
+  opacity = 'opacity-20',
+  blur = 'blur-3xl',
+  zIndex = 'z-0',
+  className = '',
+}) => {
+  const { top, left } = position;
+  const { width, height } = size;
 
   return (
     <div
-      className="absolute"
+      className={clsx('absolute', zIndex, className)}
       style={{
-        top: top,
-        left: left,
-        width: width,
-        height: height,
+        top,
+        left,
+        width,
+        height,
         transform: 'translate(-50%, -50%)',
       }}
     >
       <div
-        className="w-full h-full bg-purple-500 rounded-full opacity-20 blur-3xl animate-blob"
+        className={clsx(
+          'w-full h-full rounded-full animate-blob',
+          color,
+          opacity,
+          blur
+        )}
       ></div>
     </div>
   );
 };
 
-// Define prop types
 BlurBlob.propTypes = {
   position: PropTypes.shape({
     top: PropTypes.string,
@@ -35,6 +47,11 @@ BlurBlob.propTypes = {
     width: PropTypes.string,
     height: PropTypes.string,
   }),
+  color: PropTypes.string,
+  opacity: PropTypes.string,
+  blur: PropTypes.string,
+  zIndex: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default BlurBlob;

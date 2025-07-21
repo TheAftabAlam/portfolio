@@ -5,12 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
   const form = useRef();
-  const [isSent, setIsSent] = useState(false);
-  const [loading, setLoading] = useState(false); // 🔄 Loading state
+  const [loading, setLoading] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
+    setLoading(true);
 
     emailjs
       .send(
@@ -28,85 +27,81 @@ const Contact = () => {
       )
       .then(
         () => {
-          setIsSent(true);
-          form.current.reset();
           toast.success("Message sent successfully! ✅", {
             position: "top-right",
             autoClose: 3000,
             theme: "dark",
           });
+          form.current.reset();
         },
         (error) => {
-          console.error("Error sending message:", error);
-          toast.error("Failed to send message. Please try again.", {
+          console.error("Error:", error);
+          toast.error("Failed to send message. Try again!", {
             position: "top-right",
             autoClose: 3000,
             theme: "dark",
           });
         }
       )
-      .finally(() => {
-        setLoading(false); // Stop loading in both cases
-      });
+      .finally(() => setLoading(false));
   };
 
   return (
     <section
       id="contact"
-      className="flex flex-col items-center justify-center py-24 px-[12vw] md:px-[7vw] lg:px-[20vw]"
+      className="flex flex-col items-center justify-center py-24 px-[10vw] bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e]"
     >
       <ToastContainer />
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-white">CONTACT</h2>
-        <div className="w-32 h-1 bg-purple-500 mx-auto mt-4"></div>
-        <p className="text-gray-400 mt-4 text-lg font-semibold">
-          I’d love to hear from you—reach out for any opportunities or questions!
+        <h2 className="text-4xl font-bold text-white tracking-wide">📬 Contact Me</h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-500 mx-auto mt-4 rounded-full"></div>
+        <p className="text-gray-400 mt-4 text-lg max-w-xl mx-auto">
+          Let’s connect! Whether you have an opportunity or a question—drop me a message.
         </p>
       </div>
 
-      <div className="mt-8 w-full max-w-md bg-[#0d081f] p-6 rounded-lg shadow-lg border border-gray-700">
-        <h3 className="text-xl font-semibold text-white text-center">
-          Connect With Me <span className="ml-1">🚀</span>
+      <div className="w-full max-w-xl bg-[#131025] p-8 rounded-xl shadow-[0_0_20px_rgba(130,69,236,0.25)] border border-gray-700">
+        <h3 className="text-2xl font-semibold text-white text-center mb-6">
+          Let’s Talk <span>🚀</span>
         </h3>
 
-        <form ref={form} onSubmit={sendEmail} className="mt-4 flex flex-col space-y-4">
+        <form ref={form} onSubmit={sendEmail} className="flex flex-col space-y-4">
           <input
             type="email"
             name="recruiter_email"
             placeholder="Your Email"
             required
-            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
+            className="input-style"
           />
           <input
             type="text"
             name="recruiter_name"
             placeholder="Your Name"
             required
-            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
+            className="input-style"
           />
           <input
             type="text"
             name="recruiter_company"
             placeholder="Company Name"
             required
-            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
+            className="input-style"
           />
           <input
             type="text"
             name="recruiter_subject"
             placeholder="Subject"
             required
-            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
+            className="input-style"
           />
           <textarea
             name="recruiter_message"
-            placeholder="Message"
-            rows="4"
+            placeholder="Your Message"
+            rows="5"
             required
-            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
+            className="input-style resize-none"
           />
 
-          {/* Send Button with Loader */}
           <button
             type="submit"
             disabled={loading}
@@ -139,7 +134,7 @@ const Contact = () => {
                 Sending...
               </>
             ) : (
-              "Send"
+              "Send Message"
             )}
           </button>
         </form>

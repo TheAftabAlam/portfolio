@@ -3,57 +3,46 @@ import { projects } from "../../constants";
 
 const Work = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-
-  const handleOpenModal = (project) => {
-    setSelectedProject(project);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProject(null);
-  };
+  const openModal = (p) => setSelectedProject(p);
+  const closeModal = () => setSelectedProject(null);
 
   return (
     <section
       id="work"
-      className="py-24 pb-24 px-[12vw] md:px-[7vw] lg:px-[20vw] font-sans relative"
+      className="py-24 px-[10vw] font-sans bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-white"
     >
-      {/* Section Title */}
+      {/* Section Header */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-white">PROJECTS</h2>
-        <div className="w-32 h-1 bg-purple-500 mx-auto mt-4"></div>
-        <p className="text-gray-400 mt-4 text-lg font-semibold">
-          A showcase of the projects I have worked on, highlighting my skills
-          and experience in various technologies
+        <h2 className="text-4xl font-bold">📂 Projects</h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-500 mx-auto mt-4 rounded-full"></div>
+        <p className="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">
+          A showcase of my work, demonstrating skills across various technologies.
         </p>
       </div>
 
-      {/* Projects Grid */}
+      {/* Project Grid */}
       <div className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <div
             key={project.id}
-            onClick={() => handleOpenModal(project)}
-            className="border border-white bg-gray-900 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden cursor-pointer hover:shadow-purple-500/50 hover:-translate-y-2 transition-transform duration-300"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+            onClick={() => openModal(project)}
+            className="bg-[#1e1b36] border border-gray-700 rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition hover:-translate-y-2 hover:shadow-purple-500/50"
           >
-            <div className="p-4">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover rounded-xl"
-              />
-            </div>
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-48 object-cover"
+            />
             <div className="p-6">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {project.title}
-              </h3>
-              <p className="text-gray-500 mb-4 pt-4 line-clamp-3">
-                {project.description}
-              </p>
-              <div className="mb-4">
-                {project.tags.map((tag, index) => (
+              <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+              <p className="text-gray-400 mb-4 line-clamp-3 text-sm">{project.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag, i) => (
                   <span
-                    key={index}
-                    className="inline-block bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1 mr-2 mb-2"
+                    key={i}
+                    className="bg-[#251f38] text-purple-400 text-xs px-3 py-1 rounded-full"
                   >
                     {tag}
                   </span>
@@ -64,62 +53,55 @@ const Work = () => {
         ))}
       </div>
 
-      {/* Modal Container */}
+      {/* Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4">
-          <div className="bg-gray-900 rounded-xl shadow-2xl lg:w-full w-[90%] max-w-3xl overflow-hidden relative">
-            <div className="flex justify-end p-4">
-              <button
-                onClick={handleCloseModal}
-                className="text-white text-3xl font-bold hover:text-purple-500"
-              >
-                &times;
-              </button>
-            </div>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 p-4 z-50">
+          <div className="bg-[#1e1b36] rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden relative">
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-3xl text-gray-400 hover:text-purple-400"
+            >
+              &times;
+            </button>
 
-            <div className="flex flex-col">
-              <div className="w-full flex justify-center bg-gray-900 px-4">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="lg:w-full w-[95%] object-contain rounded-xl shadow-2xl"
-                />
+            <img
+              src={selectedProject.image}
+              alt={selectedProject.title}
+              className="w-full object-contain max-h-96"
+            />
+
+            <div className="p-8">
+              <h3 className="text-3xl font-bold mb-4">{selectedProject.title}</h3>
+              <p className="text-gray-300 mb-6">{selectedProject.description}</p>
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {selectedProject.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="bg-[#251f38] text-purple-400 text-xs px-3 py-1 rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <div className="lg:p-8 p-6">
-                <h3 className="lg:text-3xl font-bold text-white mb-4 text-md">
-                  {selectedProject.title}
-                </h3>
-                <p className="text-gray-400 mb-6 lg:text-base text-xs">
-                  {selectedProject.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {selectedProject.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-4">
-                  <a
-                    href={selectedProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-1/2 bg-gray-800 hover:bg-purple-800 text-gray-400 lg:px-6 lg:py-2 px-2 py-1 rounded-xl lg:text-xl text-sm font-semibold text-center"
-                  >
-                    View Code
-                  </a>
-                  <a
-                    href={selectedProject.webapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-1/2 bg-purple-600 hover:bg-purple-800 text-white lg:px-6 lg:py-2 px-2 py-1 rounded-xl lg:text-xl text-sm font-semibold text-center"
-                  >
-                    View Live
-                  </a>
-                </div>
+
+              <div className="flex gap-4">
+                <a
+                  href={selectedProject.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center bg-gray-800 hover:bg-purple-800 text-gray-300 py-2 rounded-xl font-semibold transition"
+                >
+                  View Code
+                </a>
+                <a
+                  href={selectedProject.webapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center bg-purple-600 hover:bg-purple-800 text-white py-2 rounded-xl font-semibold transition"
+                >
+                  View Live
+                </a>
               </div>
             </div>
           </div>
