@@ -10,6 +10,8 @@ import Footer from "./components/Footer/Footer";
 import BlurBlob from "./components/BlurBlob";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Certificate from "./components/Certificate/Certificate";
+
 const App = () => {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -28,6 +30,7 @@ const App = () => {
         <About />
         <Skills />
         <Experience />
+        <Certificate/>
         <Work />
         <Education />
         <Contact />
