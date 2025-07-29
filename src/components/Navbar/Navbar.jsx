@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import clsx from "clsx";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,16 +17,14 @@ const Navbar = () => {
     { id: "education", label: "Education" },
   ];
 
-  // Detect scroll for navbar styling
+  // Detect scroll
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Track active section based on scroll position
+  // Track active section
   useEffect(() => {
     const handleActiveSection = () => {
       for (const item of menuItems) {
@@ -39,88 +38,89 @@ const Navbar = () => {
         }
       }
     };
-
     window.addEventListener("scroll", handleActiveSection);
     return () => window.removeEventListener("scroll", handleActiveSection);
   }, []);
 
-  const handleMenuItemClick = (sectionId) => {
-    setActiveSection(sectionId);
+  const handleMenuItemClick = (id) => {
+    setActiveSection(id);
     setIsOpen(false);
-    const section = document.getElementById(sectionId);
+    const section = document.getElementById(id);
     if (section) section.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <nav
       className={clsx(
-        "fixed top-0 w-full z-50 transition duration-300 px-[7vw] md:px-[7vw] lg:px-[20vw]",
+        "fixed top-0 w-full z-50 transition-all duration-300 px-4 sm:px-6 md:px-12",
         isScrolled
-          ? "bg-[#050414] bg-opacity-50 backdrop-blur-md shadow-md"
+          ? "bg-[#050414]/70 backdrop-blur-md shadow-md border-b border-purple-500/20"
           : "bg-transparent"
       )}
-      role="navigation"
-      aria-label="Main Navigation"
     >
-      <div className="text-white py-5 flex justify-between items-center">
+      <div className="text-white py-4 flex justify-between items-center max-w-7xl mx-auto">
         {/* Logo */}
-        <div className="text-lg font-semibold cursor-pointer">
-          <span className="text-[#8245ec]">&lt;</span>
-          <span className="text-white">Aftab</span>
-          <span className="text-[#8245ec]">/</span>
-          <span className="text-white">Alam</span>
-          <span className="text-[#8245ec]">&gt;</span>
+        <div className="text-lg sm:text-xl font-bold cursor-pointer whitespace-nowrap">
+          <span className="bg-gradient-to-r from-purple-400 to-pink-500 text-transparent bg-clip-text">
+            &lt;Aftab/Alam&gt;
+          </span>
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 text-gray-300">
+        <ul className="hidden md:flex space-x-8 lg:space-x-10 text-gray-300 font-medium">
           {menuItems.map(({ id, label }) => (
             <li key={id}>
               <button
                 className={clsx(
-                  "cursor-pointer transition hover:text-[#8245ec]",
-                  activeSection === id && "text-[#8245ec]"
+                  "relative group transition",
+                  activeSection === id
+                    ? "text-purple-400"
+                    : "hover:text-purple-300"
                 )}
                 onClick={() => handleMenuItemClick(id)}
               >
                 {label}
+                <span
+                  className={clsx(
+                    "absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-400 to-pink-500 transition-all group-hover:w-full",
+                    activeSection === id && "w-full"
+                  )}
+                />
               </button>
             </li>
           ))}
         </ul>
 
-        {/* Social Links */}
-        <div className="hidden md:flex space-x-4">
+        {/* Social Links (Desktop) */}
+        <div className="hidden md:flex space-x-5">
           <a
             href="https://github.com/TheAftabAlam"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="text-gray-300 hover:text-[#8245ec]"
+            className="text-gray-300 hover:text-purple-400 transform hover:scale-110 transition"
           >
-            <FaGithub size={24} />
+            <FaGithub size={22} />
           </a>
           <a
             href="https://www.linkedin.com/in/aftabalam-connect/"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-gray-300 hover:text-[#8245ec]"
+            className="text-gray-300 hover:text-purple-400 transform hover:scale-110 transition"
           >
-            <FaLinkedin size={24} />
+            <FaLinkedin size={22} />
           </a>
         </div>
 
-        {/* Mobile Toggle Icon */}
+        {/* Mobile Toggle */}
         <div className="md:hidden">
           {isOpen ? (
             <FiX
-              className="text-3xl text-[#8245ec] cursor-pointer"
+              className="text-3xl text-purple-400 cursor-pointer"
               onClick={() => setIsOpen(false)}
             />
           ) : (
             <FiMenu
-              className="text-3xl text-[#8245ec] cursor-pointer"
+              className="text-3xl text-purple-400 cursor-pointer"
               onClick={() => setIsOpen(true)}
             />
           )}
@@ -128,43 +128,56 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-4/5 bg-[#050414] bg-opacity-50 backdrop-blur-md rounded-lg shadow-lg z-40 md:hidden">
-          <ul className="flex flex-col items-center space-y-4 py-4 text-gray-300">
-            {menuItems.map(({ id, label }) => (
-              <li key={id}>
-                <button
-                  className={clsx(
-                    "cursor-pointer hover:text-white",
-                    activeSection === id && "text-[#8245ec]"
-                  )}
-                  onClick={() => handleMenuItemClick(id)}
-                >
-                  {label}
-                </button>
-              </li>
-            ))}
-            <div className="flex space-x-4 mt-2">
-              <a
-                href="https://github.com/TheAftabAlam"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaGithub size={24} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/aftabalam-connect/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaLinkedin size={24} />
-              </a>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden absolute top-16 left-0 w-full px-4"
+          >
+            <div className="bg-[#050414]/90 backdrop-blur-md rounded-2xl shadow-lg py-6">
+              <ul className="flex flex-col items-center space-y-5 text-gray-200">
+                {menuItems.map(({ id, label }) => (
+                  <li key={id}>
+                    <button
+                      className={clsx(
+                        "text-lg font-medium transition",
+                        activeSection === id
+                          ? "text-purple-400"
+                          : "hover:text-white"
+                      )}
+                      onClick={() => handleMenuItemClick(id)}
+                    >
+                      {label}
+                    </button>
+                  </li>
+                ))}
+                {/* Mobile Socials */}
+                <div className="flex space-x-6 pt-3">
+                  <a
+                    href="https://github.com/TheAftabAlam"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-purple-400 transform hover:scale-110 transition"
+                  >
+                    <FaGithub size={24} />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/aftabalam-connect/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-purple-400 transform hover:scale-110 transition"
+                  >
+                    <FaLinkedin size={24} />
+                  </a>
+                </div>
+              </ul>
             </div>
-          </ul>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
