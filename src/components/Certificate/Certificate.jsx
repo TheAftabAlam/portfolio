@@ -2,44 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaCertificate } from "react-icons/fa";
+import { certificates } from "../../constants.js"
 
-const certificates = [
-  {
-    title: "Certificate of Appreciation",
-    issuer: "Hostbooks Limited",
-    date: "2024",
-    description: "Awarded for outstanding contribution in handling backend of POS application.",
-    link: "https://drive.google.com/file/d/15qerB256LoaG5DBwB9KqQZPAaYpCAfMm/view?usp=drive_link",
-  },
-  {
-    title: "Java Backend Development",
-    issuer: "Udemy",
-    date: "2022",
-    description: "Completed specialization in backend development using Spring Boot & MySQL.",
-    link: "https://www.udemy.com/certificate/UC-338ca492-ddea-418c-b06d-6d06f0650e8b/",
-  },
-  {
-    title: "Java",
-    issuer: "HackerRank",
-    date: "2022",
-    description: "Demonstrated foundational skills in Java programming.",
-    link: "https://www.hackerrank.com/certificates/ebcaaeb3aba0",
-  },
-  {
-    title: "Problem Solving",
-    issuer: "HackerRank",
-    date: "2022",
-    description: "Certified for strong logical reasoning and problem-solving skills.",
-    link: "https://www.hackerrank.com/certificates/0e54e9bd678e",
-  },
-  {
-    title: "SQL",
-    issuer: "HackerRank",
-    date: "2022",
-    description: "Certified in SQL fundamentals including queries, joins, and data handling.",
-    link: "https://www.hackerrank.com/certificates/1d861790a3fa",
-  },
-];
 
 const Certificates = () => {
   return (

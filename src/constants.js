@@ -215,31 +215,38 @@ export const projects = [
 
 export const certificates = [
   {
-    id: 0,
-    title: "ShopEase - E-commerce Platform",
-    description:
-      "ShopEase is a full-stack e-commerce web application built using React, Redux, Java, Spring Boot, and MySQL. It offers a seamless shopping experience with features like user authentication, product browsing, shopping cart, order management, and role-based access for admins and customers. The backend exposes secure RESTful APIs with robust data handling using Spring and Hibernate, while the frontend delivers dynamic and responsive UI powered by Redux for state management.",
-    image: se, // Replace with actual ShopEase logo or placeholder
-    tags: ["React", "Redux", "Java", "Spring Boot", "MySQL", "Hibernate", "REST API"],
-    github: "https://github.com/TheAftabAlam/e-commerce"
+    title: "Certificate of Appreciation",
+    issuer: "Hostbooks Limited",
+    date: "2024",
+    description: "Awarded for outstanding contribution in handling backend of POS application.",
+    link: "https://drive.google.com/file/d/15qerB256LoaG5DBwB9KqQZPAaYpCAfMm/view?usp=drive_link",
   },
   {
-    id: 1,
-    title: "Nursery Plant API",
-    description:
-      "A robust backend RESTful API developed using Spring Boot, Spring Framework, MySQL, and Hibernate. This API powers a nursery management system, enabling efficient handling of plant inventory, categories, customer orders, and authentication. It provides scalable endpoints for CRUD operations, user roles, and secure data persistence, making it ideal for modern plant nursery applications.",
-    image: nursaryLogo,
-    tags: ["Java", "Spring Boot", "Spring", "MySQL", "Hibernate", "REST API"],
-    github: "https://github.com/TheAftabAlam/Nursary-Plant-Api"
+    title: "Java Backend Development",
+    issuer: "Udemy",
+    date: "2022",
+    description: "Completed specialization in backend development using Spring Boot & MySQL.",
+    link: "https://www.udemy.com/certificate/UC-338ca492-ddea-418c-b06d-6d06f0650e8b/",
   },
   {
-    id: 2,
-    title: "CricBuzz Clone",
-    description:
-      "A front-end clone of the popular cricket platform CricBuzz, built using HTML, CSS, and JavaScript. This project replicates core features such as live scores, match schedules, and news layouts. Designed with a responsive UI and attention to detail to mimic the real-world application experience.",
-    image: cricbuzz, // Replace with the actual imported logo or a placeholder
-    tags: ["HTML", "CSS", "JavaScript", "DOM Manipulation", "Responsive Design"],
-    github: "https://github.com/VijaySingh8650/cricbuzz"
-
-  }
-];  
+    title: "Java",
+    issuer: "HackerRank",
+    date: "2022",
+    description: "Demonstrated foundational skills in Java programming.",
+    link: "https://www.hackerrank.com/certificates/ebcaaeb3aba0",
+  },
+  {
+    title: "Problem Solving",
+    issuer: "HackerRank",
+    date: "2022",
+    description: "Certified for strong logical reasoning and problem-solving skills.",
+    link: "https://www.hackerrank.com/certificates/0e54e9bd678e",
+  },
+  {
+    title: "SQL",
+    issuer: "HackerRank",
+    date: "2022",
+    description: "Certified in SQL fundamentals including queries, joins, and data handling.",
+    link: "https://www.hackerrank.com/certificates/1d861790a3fa",
+  },
+];
