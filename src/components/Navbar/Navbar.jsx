@@ -16,6 +16,7 @@ const Navbar = () => {
     { id: "certificates", label: "Certificates" },
     { id: "work", label: "Projects" },
     { id: "education", label: "Education" },
+    { id: "contact", label: "Contact" },
   ];
 
   // Detect scroll
@@ -55,17 +56,21 @@ const Navbar = () => {
       className={clsx(
         "fixed top-0 w-full z-50 transition-all duration-300 px-4 sm:px-6 md:px-12",
         isScrolled
-          ? "bg-[#050414]/70 backdrop-blur-md shadow-md border-b border-purple-500/20"
+          ? "bg-[#050414]/70 backdrop-blur-xl shadow-lg border-b border-purple-500/20"
           : "bg-transparent"
       )}
     >
       <div className="text-white py-4 flex justify-between items-center max-w-7xl mx-auto">
         {/* Logo */}
-        <div className="text-lg sm:text-xl font-bold cursor-pointer whitespace-nowrap">
-          <span className="bg-gradient-to-r from-purple-400 to-pink-500 text-transparent bg-clip-text">
+        <motion.div
+          whileHover={{ scale: 1.08 }}
+          transition={{ type: "spring", stiffness: 200 }}
+          className="text-lg sm:text-xl font-bold cursor-pointer whitespace-nowrap"
+        >
+          <span className="bg-gradient-to-r from-purple-400 to-pink-500 text-transparent bg-clip-text drop-shadow-md">
             &lt;Aftab/Alam&gt;
           </span>
-        </div>
+        </motion.div>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 lg:space-x-10 text-gray-300 font-medium">
@@ -73,7 +78,7 @@ const Navbar = () => {
             <li key={id}>
               <button
                 className={clsx(
-                  "relative group transition",
+                  "relative group transition-all duration-200",
                   activeSection === id
                     ? "text-purple-400"
                     : "hover:text-purple-300"
@@ -83,8 +88,8 @@ const Navbar = () => {
                 {label}
                 <span
                   className={clsx(
-                    "absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-400 to-pink-500 transition-all group-hover:w-full",
-                    activeSection === id && "w-full"
+                    "absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-purple-400 to-pink-500 transition-all duration-300",
+                    activeSection === id ? "w-full" : "w-0 group-hover:w-full"
                   )}
                 />
               </button>
@@ -94,22 +99,24 @@ const Navbar = () => {
 
         {/* Social Links (Desktop) */}
         <div className="hidden md:flex space-x-5">
-          <a
+          <motion.a
+            whileHover={{ scale: 1.2, rotate: 5 }}
             href="https://github.com/TheAftabAlam"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-purple-400 transform hover:scale-110 transition"
+            className="text-gray-300 hover:text-purple-400 transition"
           >
             <FaGithub size={22} />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.2, rotate: -5 }}
             href="https://www.linkedin.com/in/aftabalam-connect/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-purple-400 transform hover:scale-110 transition"
+            className="text-gray-300 hover:text-purple-400 transition"
           >
             <FaLinkedin size={22} />
-          </a>
+          </motion.a>
         </div>
 
         {/* Mobile Toggle */}
@@ -135,13 +142,17 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.3 }}
             className="md:hidden absolute top-16 left-0 w-full px-4"
           >
-            <div className="bg-[#050414]/90 backdrop-blur-md rounded-2xl shadow-lg py-6">
+            <div className="bg-[#050414]/95 border border-purple-500/20 backdrop-blur-lg rounded-2xl shadow-lg py-6">
               <ul className="flex flex-col items-center space-y-5 text-gray-200">
                 {menuItems.map(({ id, label }) => (
-                  <li key={id}>
+                  <motion.li
+                    key={id}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                  >
                     <button
                       className={clsx(
                         "text-lg font-medium transition",
@@ -153,26 +164,28 @@ const Navbar = () => {
                     >
                       {label}
                     </button>
-                  </li>
+                  </motion.li>
                 ))}
                 {/* Mobile Socials */}
                 <div className="flex space-x-6 pt-3">
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.2, rotate: 5 }}
                     href="https://github.com/TheAftabAlam"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-purple-400 transform hover:scale-110 transition"
+                    className="text-gray-300 hover:text-purple-400 transition"
                   >
                     <FaGithub size={24} />
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.2, rotate: -5 }}
                     href="https://www.linkedin.com/in/aftabalam-connect/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-purple-400 transform hover:scale-110 transition"
+                    className="text-gray-300 hover:text-purple-400 transition"
                   >
                     <FaLinkedin size={24} />
-                  </a>
+                  </motion.a>
                 </div>
               </ul>
             </div>
