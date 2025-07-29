@@ -30,8 +30,8 @@ const App = () => {
         <About />
         <Skills />
         <Experience />
-        <Certificate/>
         <Work />
+        <Certificate />
         <Education />
         <Contact />
         <Footer />

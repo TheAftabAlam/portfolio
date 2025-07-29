@@ -3,21 +3,15 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
+import { menuItems } from "../../constants";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const menuItems = [
-    { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
-    { id: "experience", label: "Experience" },
-    { id: "certificates", label: "Certificates" },
-    { id: "work", label: "Projects" },
-    { id: "education", label: "Education" },
-    { id: "contact", label: "Contact" },
-  ];
+
+
 
   // Detect scroll
   useEffect(() => {

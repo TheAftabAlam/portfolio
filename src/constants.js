@@ -250,3 +250,13 @@ export const certificates = [
     link: "https://www.hackerrank.com/certificates/1d861790a3fa",
   },
 ];
+
+export const menuItems = [
+  { id: "about", label: "About" },          // Who you are, quick intro
+  { id: "skills", label: "Skills" },        // What you know (tech stack)
+  { id: "experience", label: "Experience" },// Your work history
+  { id: "work", label: "Projects" },        // Showcase of real work
+  { id: "certificates", label: "Certificates" }, // Extra proof of skills
+  { id: "education", label: "Education" },  // Academic background
+  { id: "contact", label: "Contact" },      // Call to action at end
+];
